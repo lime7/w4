@@ -3,6 +3,7 @@ const paths = require('./paths')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const StylelintPlugin = require('stylelint-webpack-plugin')
 
 
 module.exports = {
@@ -59,7 +60,7 @@ module.exports = {
   		{
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: ['eslint-loader'],
       },
       /**
        * Styles
@@ -160,6 +161,11 @@ module.exports = {
       template: paths.src + '/contact.html' // template file
       //hash: true,
       //inject: false
+    }),
+
+
+    new StylelintPlugin({
+      files: '**/*.s?(a|c)ss'
     })
   ]
 }
