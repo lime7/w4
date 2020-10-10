@@ -4,8 +4,7 @@
 module.exports = {
   parserOptions: {
     parser: 'babel-eslint',
-    ecmaVersion: 2018,
-    sourceType: 
+    ecmaVersion: 2018
   },
   env: {
     browser: true,
@@ -21,6 +20,6 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
-    
+    'no-unused-vars': 'off'
   }
 }
