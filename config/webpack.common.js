@@ -85,6 +85,7 @@ module.exports = {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/i,
         loader: 'file-loader',
         options: {
+          esModule: false,
           name: '[path][name].[ext]',
           context: 'src', // prevent display of src/ in filename
         },

@@ -16,3 +16,6 @@ var slider = tns({
   slideBy: 'page',
   autoplay: true
 })
+
+// eslint-disable-next-line import/first
+import { fslightbox } from 'fslightbox'
