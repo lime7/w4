@@ -5,14 +5,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const StylelintPlugin = require('stylelint-webpack-plugin')
 
-
 module.exports = {
   /**
    * Entry
    *
    * The first place Webpack looks to start building the bundle.
    */
-	entry: {
+  entry: {
     main: paths.src + '/index.js',
     vendor: paths.src + '/vendor.js'
   },
@@ -23,9 +22,9 @@ module.exports = {
    * Where Webpack outputs the assets and bundles.
    */
   output: {
-  	path: paths.build,
-  	filename: '[name].js',
-    //publicPath: '/',
+    path: paths.build,
+    filename: '[name].js'
+    // publicPath: '/'
   },
   /**
    * Module
@@ -33,34 +32,34 @@ module.exports = {
    * Determine how modules within the project are treated.
    */
   module: {
-  	rules: [
+    rules: [
       /**
        * Html
        *
-       * 
+       *
        */
       {
         test: /\.html$/,
         use: [{
-            loader: 'underscore-template-loader'
-          }
+          loader: 'underscore-template-loader'
+        }
           // {
           //   loader: 'html-loader',
           //   options: {
           //     minimize: false
           //   }
           // }
-        ],
+        ]
       },
       /**
        * JavaScript
        *
        * Use Babel to transpile JavaScript files.
        */
-  		{
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['eslint-loader'],
+        use: ['eslint-loader']
       },
       /**
        * Styles
@@ -73,8 +72,8 @@ module.exports = {
           'style-loader',
           { loader: 'css-loader', options: { sourceMap: true, importLoaders: 1 } },
           { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'sass-loader', options: { sourceMap: true } },
-        ],
+          { loader: 'sass-loader', options: { sourceMap: true } }
+        ]
       },
       /**
        * Images
@@ -87,8 +86,8 @@ module.exports = {
         options: {
           esModule: false,
           name: '[path][name].[ext]',
-          context: 'src', // prevent display of src/ in filename
-        },
+          context: 'src' // prevent display of src/ in filename
+        }
       },
       /**
        * Fonts
@@ -101,10 +100,10 @@ module.exports = {
         options: {
           limit: 8192,
           name: '[path][name].[ext]',
-          context: 'src', // prevent display of src/ in filename
-        },
-      },
-  	]
+          context: 'src' // prevent display of src/ in filename
+        }
+      }
+    ]
   },
   plugins: [
     /**
@@ -125,10 +124,10 @@ module.exports = {
           from: paths.static,
           to: 'assets',
           globOptions: {
-            ignore: ['*.DS_Store'],
-          },
-        },
-      ],
+            ignore: ['*.DS_Store']
+          }
+        }
+      ]
     }),
 
     /**
@@ -136,34 +135,35 @@ module.exports = {
     *
     * Generates an HTML file from a template.
     */
-  	new HtmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       title: 'Main Page',
-      //favicon: paths.static + '/favicon.ico',
-      filename: 'index.html',       
+      // favicon: paths.static + '/favicon.ico',
+      filename: 'index.html',
       template: paths.src + '/index.html', // template file
-      minify: false,
-      //hash: true,
-      //inject: false
+      minify: false
+      // hash: true,
+      // inject: false
     }),
 
     new HtmlWebpackPlugin({
       title: 'Blog Page',
-      //favicon: paths.static + '/favicon.ico',
-      filename: 'blog.html',       
-      template: paths.src + '/blog.html' // template file
-      //hash: true,
-      //inject: false
+      // favicon: paths.static + '/favicon.ico',
+      filename: 'blog.html',
+      template: paths.src + '/blog.html', // template file
+      minify: false
+      // hash: true,
+      // inject: false
     }),
 
     new HtmlWebpackPlugin({
       title: 'Contact Page',
-      //favicon: paths.static + '/favicon.ico',
-      filename: 'contact.html',       
-      template: paths.src + '/contact.html' // template file
-      //hash: true,
-      //inject: false
+      // favicon: paths.static + '/favicon.ico',
+      filename: 'contact.html',
+      template: paths.src + '/contact.html', // template file
+      minify: false
+      // hash: true,
+      // inject: false
     }),
-
 
     new StylelintPlugin({
       files: '**/*.s?(a|c)ss'

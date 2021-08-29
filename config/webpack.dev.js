@@ -1,18 +1,18 @@
 'use strict'
 const paths = require('./paths')
 const webpack = require('webpack')
-const {merge} = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
-	/**
+  /**
    * Mode
    *
    * Set the mode to development or production.
-   */	   
-	mode: 'development', // Stop minify webpack JS bundle
+   */
+  mode: 'development', // Stop minify webpack JS bundle
 
-	/**
+  /**
    * Devtool
    *
    * Control how source maps are generated.
@@ -34,11 +34,11 @@ module.exports = merge(common, {
     overlay: true // Shows a full-screen overlay with errors or warnings
   },
   plugins: [
-  	/**
+    /**
      * HotModuleReplacementPlugin
      *
      * Only update what has changed.
      */
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 })
